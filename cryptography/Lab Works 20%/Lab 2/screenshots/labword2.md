@@ -1,9 +1,9 @@
-## Assalamualaikum Everyone 👋🏻
+## Assalamualaikum and Hi Everyone 👋🏻
 
 So this is my second lab work for this subject. For today, I am going to take you guys to a walkthrough of cryptographic attacks. You will learn how to crack weak password hashes and exploiting poor authentication in databases
 
 >😱: Even hashed password can be cracked?!
-🕵🏻: It is weak my brother
+>🕵🏻: It is weak my brother
 
 So get ready detectives, prepare your investigation kit to hop on this investigation.
 
@@ -24,7 +24,7 @@ To begin, we will scan the target machine to identify service available on the o
 ```sh
     nmap -sV <target-ip>
 ```
-![alt text](<nmap scan.png>)
+![alt text](/cryptography/Lab%20Works%2020%25/Lab%202/screenshots/Screenshots/nmap%20scan.png)
 
 That' a lot right! Grab your magnificient detective 🔍and look for database service running
 
@@ -40,8 +40,10 @@ Next, we will access the database from our localhost. Remeber, if you have no id
     mysql --help
     mysql -h <target-ip> -u <username> --skip-ssl
 
+
+
 ![alt text](<Screenshot 2025-04-25 112702.png>)
-![alt text](<successful log in.png>)
+![alt text](/cryptography/Lab%20Works%2020%25/Lab%202/screenshots/Screenshots/successful%20log%20in.png)
 - -h : host
 - -u : username
 - --skip-ssl : to bypass disable the SSL service
@@ -57,25 +59,25 @@ Database is the place to store data including user and password. Now that we are
 
     SHOW DATABASES;
 - this command is use to list all the database in the service.
-![alt text](<show database.png>)
+![alt text](/cryptography/Lab%20Works%2020%25/Lab%202/screenshots/Screenshots/show%20database.png)
 
 Then, we will infilitrate into mysql database
 
     use mysql
-![alt text](mysql.user.png)
+![alt text](/cryptography/Lab%20Works%2020%25/Lab%202/screenshots/Screenshots/mysql.user.png)
 
 Notice the bracket has change from none to mysql. That means we are now in mysql database
 
 To identify tables in a database use this command
     SHOW TABLES;
 
-![alt text](<show tables.png>)
+![alt text](/cryptography/Lab%20Works%2020%25/Lab%202/screenshots/Screenshots/show%20tables.png)
 
 The last table is user. We can assume all user's data is stored in here. Let's view the data
 
     SELECT user, Host, Password FROM user;
 
-![alt text](<view mysql.user.png>)
+![alt text](/cryptography/Lab%20Works%2020%25/Lab%202/screenshots/Screenshots/view%20mysql.user.png)
 
 😏Looks like these user didn't even have a password. They even have a weak access control
 
@@ -86,11 +88,11 @@ Moving on to the next step, we will attempt to authenticate using these accound.
 
     mysql -h 192.168.48.140 -u debian-sys-maint --skip -ssl
 
-![alt text](<debian log in.png>)
+![alt text](/cryptography/Lab%20Works%2020%25/Lab%202/screenshots/Screenshots/debian%20log%20in.png)
 
-    mysql -h 192.168.48.140 -u root --skip-ssl
+    mysql -h 192.168.48.140 -u guest --skip-ssl
 
-![alt text](<guest login.png>)
+![alt text](/cryptography/Lab%20Works%2020%25/Lab%202/screenshots/Screenshots/guest%20login.png)
 
 ## 3️⃣🔎Password Hash Discovery and Hash Identification
 
@@ -103,11 +105,11 @@ Now, we need to look for tables that contain hash password.
     SHOW TABLES;
     DESCRIBE <table name>
 So it will look like this
-![alt text](<demo describe.png>)
+![alt text](/cryptography/Lab%20Works%2020%25/Lab%202/screenshots/Screenshots/demo%20describe.png)
 
 Therefore we can just simply choose to view the user and password
     SELECT user, password FROM users;
-![alt text](<hash password.png>)
+![alt text](/cryptography/Lab%20Works%2020%25/Lab%202/screenshots/Screenshots/hash%20password.png)
 
 Now that the password has been exposed but it is hashed. In cryptography, there are numerous type of hashing such as 
 
@@ -126,7 +128,7 @@ Before we start cracking the password, it is important for us the identify the t
 | **SHA-512**    | 512 bits / 128 hex chars| ✅ Secure            | - Lowercase hex (0-9, a-f) <br> - 128 characters <br> - Very long, hard to mistake | Used in high-security systems, password hashing |
 
 Let's look back at our hashed password
-![alt text](<hashed password.png>)
+![alt text](/cryptography/Lab%20Works%2020%25/Lab%202/screenshots/Screenshots/hashed%20password.png)
 
 >🕵🏻💭 It is MD5 (weak! it's already outdated!)
 
@@ -147,15 +149,15 @@ Then, use any identification tools (hashid or hash-identifier). For this walkthr
 using hashid is very simple! just type hashid and then hash value. So the command will look like this:
     
     hashid 5f4dcc3b5aa765d61d8327deb882cf99
-![alt text](Screenshots/hashid%201.png)
-![alt text](hashid2.png)
-![alt text](<hashid 3.png>)
+![alt text](/cryptography/Lab%20Works%2020%25/Lab%202/screenshots/Screenshots/hashid%201.png)
+![alt text](/cryptography/Lab%20Works%2020%25/Lab%202/screenshots/Screenshots/hashid2.png)
+![alt text](/cryptography/Lab%20Works%2020%25/Lab%202/screenshots/Screenshots/hashid%203.png)
 
 ### b. hash-identifier
 type and run hash-identifier command to activate the tool. the, simply paste hash value
 
-![alt text](<hash identifier 1.png>)
-![alt text](<hash identifier 2.png>)
+![alt text](/cryptography/Lab%20Works%2020%25/Lab%202/screenshots/Screenshots/hash%20identifier%201.png)
+![alt text](/cryptography/Lab%20Works%2020%25/Lab%202/screenshots/Screenshots/hash%20identifier%202.png)
 
 >🤔When I think back, it is actually the same. The difference is just the hash-identifier greet us with their bombastic banner. Don't you  think so?
 
@@ -185,12 +187,12 @@ Before we proceed to challenges of this lab, let's answer a few question here
 ## 😵‍💫💫Challenges encounter
 As I do this lab, I have face a number of issues. I will park it here so that you guys can refer to it if you encounter the same problem.
 
-![alt text](<error connect ssh.png>)
+![alt text](/cryptography/Lab%20Works%2020%25/Lab%202/screenshots/Screenshots/error%20connect%20ssh.png)
 This problem occur due to imcompatible TLS/SSL version. We can solve this issue by disabling the SSL. They are plenty of command we can use. But I use the --skip-ssl. So the command I use to solve this issue is
 
     mysql -h <target-ip> -u <username> --skip-ssl
 
-![alt text](<error john.png>)
+![alt text](/cryptography/Lab%20Works%2020%25/Lab%202/screenshots/Screenshots/error%20john.png)
 
 This happen because we don't specify the type of hash. If we recall the moment we try to identify the type of hash using identifier tools, there are lot's of it right? Therefore John the ripper isn't sure which hashing algorithm to use. To fix this we use the  --format to specify the type of hash. The final command is:
 
