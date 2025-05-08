@@ -32,5 +32,5 @@ def generate_rsa_keys(name):
     print (f"{name} keys generated are saved!")
 
 #generat keys for Labu and Labi
-generate_rsa_keys("Labu")
-generate_rsa_keys("Labi")
+#generate_rsa_keys("Labu")
+generate_rsa_keys("Seri")
