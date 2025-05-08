@@ -43,7 +43,7 @@ def decrypt_message(ciphertext_b64, private_key):
     return plaintext.decode('utf-8')
 
 def main():
-    print("=== RSA Encryption/Decryption Demo ===")
+    print("=== RSA Encryption/Decryption ===")
     print("Choose an option:")
     print("1. Encrypt a message (for your friend)")
     print("2. Decrypt a message (received from friend)")

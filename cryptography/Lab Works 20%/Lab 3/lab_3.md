@@ -77,10 +77,11 @@ To view generated private key, use:
 
 3. Create a file and encrypt the message with  your friend public key
 
-    ![alt text](</cryptography/Lab Works 20%25/Lab 3/screenshot/encrypt with sheba key.png>)
+   ![alt text](</cryptography/Lab Works 20%25/Lab 3/screenshot/encrypt with pub sheba.png>)
 
 4. Decrypt the file using private key with openssl
 
+    ![alt text](</cryptography/Lab Works 20%25/Lab 3/screenshot/decrypt sheba.png>)
 
 ## 3️⃣ Hashing and message integrity using SHA-256
 

@@ -22,7 +22,7 @@ key = os.urandom(32)  # AES-256 key (32 bytes)
 iv = os.urandom(16)
 
 # Sample message
-message = "Cryptography Lab by <Your Name, Student ID>!"
+message = "Cryptography Lab by <Seri Binti Mohd Nizam, NWS23010057>!"
 
 # Padding the message
 padded_message = pad_message(message)
