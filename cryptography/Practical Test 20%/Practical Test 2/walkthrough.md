@@ -92,6 +92,11 @@ There are three files in the folder
 
 ## 4️⃣ Decompile it to .pyc format
 
+    pyinstxtractor <file_name>
+    ls
+
+Next, we are going to decompile it to `.pyc` file because thesee format contain file such as bytecode
+
 ![alt text](</Practical Test 20%25/Practical Test 2/screenshot/decompile to .pyc.png>)
 
 ![alt text](</Practical Test 20%25/Practical Test 2/screenshot/check extracted file.png>)
@@ -113,6 +118,8 @@ As you can see there are numerous file in the folder but our main focus is the `
 
 ## 5️⃣ Convert .pyc file to .py file
 
+Like I said before, `.pyc` is not human-readble. so we need to convert it to `.py` format. 
+
     uncompyle6 (.pyc file) > (.py file)
     ls
 
@@ -121,6 +128,19 @@ As you can see there are numerous file in the folder but our main focus is the `
     uncompyle 6 <file_name>
 
 ![alt text](</Practical Test 20%25/Practical Test 2/screenshot/view .py.png>)
+
+### Why convert `.pyc` to `.py`??? 🤔
+
+Well it is simply because. `.py` format are
+
+1. increase readability and understanding as it let you see original source code
+2. enable modification and development. `.pyc` format will not allow you edit the file
+3. Security analysis. As I mention before, `.pyc` is not human-readable, so analysing it totally impossible. (Unless you are 👽....JK =3). So change it to `.py` will help you able to read it and of course, analyse it
+
+So what I can conclude is
+
+- `.pyc` --> compiled bytecode, not human-firendly 😒
+- `.py` --> source code, asy to read and edit 😄
 
 ---
 
