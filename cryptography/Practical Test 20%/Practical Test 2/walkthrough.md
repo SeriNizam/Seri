@@ -276,3 +276,22 @@ if __name__ == "__main__":
             full_path = os.path.join(folder, filename)
             decrypt_file(full_path)
 ```
+
+Now taht we have come to the end, let's do a bit flaw analysis 🕵🏻
+
+1. Explain how and why the cryptography used in the ransomware is flawed
+
+   - The stimulated ransomware use AES encryption BUT in ECB mode with a hardcoded key🔑
+   - ECB is a weak algorithm since it leak the pattern and hardcoded key is DEFINITELY A NO 🙅🏻‍♂️
+    > hardcoded key means the encryption key is placed directly in the source code. So if attacker can gained `.py` file, they can get the key and create the decryptor
+
+2. Suggest a more secure version of encryption could look like 
+   
+   - use a stronger algorithm such as AES instead of ECB. Like we has go several lab, AES is the current symmteric encryption algorithm used. Unlike ECB that leak the pattern, AES provide better encryption and authentication as it comes with IV
+   - 
+    > For those, who don't know IV, you guys can refer to my previous labwork😉
+   - **DO NOT** hardcoded the key 
+  
+  ---
+
+  That's all from me for this walkthrough hope you guys enjoy this assignment. In Shaa Allah, I will see you guys in other lab. Assalamualaikum 👋🏻🥰
